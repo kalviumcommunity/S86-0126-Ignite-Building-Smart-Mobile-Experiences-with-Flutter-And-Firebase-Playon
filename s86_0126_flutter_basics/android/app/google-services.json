@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "976106218961",
+    "project_id": "my-play-on-id",
+    "storage_bucket": "my-play-on-id.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976106218961:android:73b5fc745e3e7d0234ecf0",
+        "android_client_info": {
+          "package_name": "com.example.s86_0126_flutter_basics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEP0N7S_HWwtraqJaJjSX4aKW4IHEDDy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

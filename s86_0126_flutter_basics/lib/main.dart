@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'screens/responsive_home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+import 'screens/login_screen.dart';
+// import 'screens/responsive_home.dart'; // keep for later use if needed
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -12,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ResponsiveHome(),
+      home: LoginScreen(), // 🔥 Start with Auth
     );
   }
 }
