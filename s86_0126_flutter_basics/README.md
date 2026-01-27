@@ -70,3 +70,43 @@ Flutter Codelab – Write your first app: https://docs.flutter.dev/get-started/c
 Flutter Cookbook: https://docs.flutter.dev/cookbook
 
 Flutter Documentation: https://docs.flutter.dev/
+
+## Understanding Widget Tree & Reactive UI (Sprint #2)
+
+### 📌 Description
+This task demonstrates Flutter’s widget tree structure and its reactive UI model. A simple demo screen was created to show how widgets are arranged in a hierarchy and how the UI updates automatically when the state changes.
+
+---
+
+### 🌳 Widget Tree Hierarchy
+
+Scaffold  
+ ┣ AppBar  
+ ┗ Body  
+    ┗ Center  
+       ┗ Column  
+          ┣ Text  
+          ┣ Container  
+          ┗ ElevatedButton  
+
+---
+
+### 🔄 Reactive UI Model
+Flutter uses a reactive UI approach. When the state changes using setState(), Flutter automatically rebuilds only the affected widgets instead of the whole screen. This makes UI updates fast and efficient.
+
+In this demo:
+- Initial UI shows default text and color
+- Clicking the button updates the state
+- Text and container color change instantly
+- Only the required widgets are rebuilt
+
+---
+
+### 📸 Screenshots
+- Initial UI state (before button click)
+- Updated UI state (after button click)
+
+---
+
+### 🧠 Learning Outcome
+Through this task, I understood how Flutter builds UI using a widget tree and how state changes trigger automatic UI updates. This helped me clearly understand Flutter’s reactive design pattern and efficient rendering system.
