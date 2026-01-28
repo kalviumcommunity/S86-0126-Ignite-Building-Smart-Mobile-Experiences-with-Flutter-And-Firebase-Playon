@@ -110,3 +110,272 @@ In this demo:
 
 ### 🧠 Learning Outcome
 Through this task, I understood how Flutter builds UI using a widget tree and how state changes trigger automatic UI updates. This helped me clearly understand Flutter’s reactive design pattern and efficient rendering system.
+---
+
+## Creating and Using Stateless and Stateful Widgets (Sprint #2)
+
+### 📌 Description
+This comprehensive demo showcases the two fundamental types of Flutter widgets: **StatelessWidget** and **StatefulWidget**. The project demonstrates when and how to use each type, their differences in managing state, and how they work together to create dynamic, interactive applications.
+
+---
+
+### 🎯 Key Concepts
+
+#### **StatelessWidget - The Immutable Foundation**
+A `StatelessWidget` is a widget that does not maintain any internal, mutable state. Once built, it remains constant until its parent widget rebuilds it with different parameters.
+
+**Characteristics:**
+- 📌 Immutable and stateless
+- ⚡ More efficient for static content
+- 🔒 Cannot change its properties after being created
+- 🎨 Ideal for UI elements like headers, labels, icons, and cards
+
+**When to Use:**
+- Static headers and titles
+- Information cards displaying fixed data
+- Icons and images
+- Navigation elements
+- Configuration-based UI components
+
+**Example from the Demo:**
+```dart
+class AppHeader extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const AppHeader({
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(title, style: Theme.of(context).textTheme.headlineMedium),
+        SizedBox(height: 8),
+        Text(subtitle),
+      ],
+    );
+  }
+}
+```
+
+The `AppHeader` widget displays static content that doesn't change unless its parent rebuilds it with new values.
+
+---
+
+#### **StatefulWidget - The Dynamic Engine**
+A `StatefulWidget` maintains internal, mutable state that can change during the widget's lifecycle. It uses `setState()` to notify Flutter of state changes and trigger UI rebuilds.
+
+**Characteristics:**
+- 🔄 Maintains mutable state
+- 📊 Updates UI dynamically
+- 🎯 Responds to user interactions
+- ✨ Supports animations and real-time changes
+- 🚀 Rebuilds only affected portions of UI
+
+**When to Use:**
+- Interactive elements (buttons, forms, counters)
+- Components that respond to user input
+- Animations and transitions
+- Data that changes over time
+- Real-time updates and live data
+
+**Example from the Demo:**
+```dart
+class InteractiveCounter extends StatefulWidget {
+  const InteractiveCounter({super.key});
+
+  @override
+  State<InteractiveCounter> createState() => _InteractiveCounterState();
+}
+
+class _InteractiveCounterState extends State<InteractiveCounter> {
+  int _count = 0;
+  bool _isDarkMode = false;
+
+  void _incrementCounter() {
+    setState(() {
+      _count++;  // Trigger UI rebuild
+    });
+  }
+
+  void _toggleDarkMode() {
+    setState(() {
+      _isDarkMode = !_isDarkMode;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text('$_count'),  // Updates when state changes
+          ElevatedButton(
+            onPressed: _incrementCounter,
+            child: Text('Increase'),
+          ),
+          Switch(
+            value: _isDarkMode,
+            onChanged: (value) => _toggleDarkMode(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+The `InteractiveCounter` widget manages its own state, allowing it to update the counter and toggle dark mode in response to user interactions.
+
+---
+
+### 📊 Comparison Table
+
+| Aspect | StatelessWidget | StatefulWidget |
+|--------|-----------------|----------------|
+| **State** | Immutable | Mutable |
+| **Change** | No internal changes | Changes via `setState()` |
+| **Use Case** | Static UI | Interactive UI |
+| **Performance** | Better for static content | Better for dynamic content |
+| **Rebuild** | Parent-initiated | Self-initiated via `setState()` |
+| **Lifecycle** | Simple | Complex with lifecycle methods |
+| **Example** | Header, Label, Icon | Counter, Form, Toggle |
+
+---
+
+### 🎨 Demo Features
+
+The `StatelessStatefulDemo` combines both widget types to create a comprehensive learning experience:
+
+1. **Static Header (StatelessWidget)**
+   - Displays app title and subtitle
+   - Never changes unless parent rebuilds
+   - Demonstrates immutability
+
+2. **Info Cards (StatelessWidget)**
+   - Information about Stateless and Stateful widgets
+   - Static content with visual styling
+   - Reusable component
+
+3. **Interactive Counter (StatefulWidget)**
+   - Increment, decrement, and reset counter
+   - Light/Dark mode toggle
+   - Dynamic status messages
+   - Real-time UI updates
+   - Visual feedback for state changes
+
+4. **Educational Content (StatelessWidget)**
+   - Best practices and use cases
+   - Key takeaways
+
+---
+
+### 🚀 Implementation Highlights
+
+**File Location:** `lib/screens/stateless_stateful_demo.dart`
+
+**Widgets Implemented:**
+1. `AppHeader` - Static header component
+2. `InfoCard` - Reusable info display card
+3. `InteractiveCounter` - Main interactive component
+4. `StatelessStatefulDemo` - Main demo screen
+
+**Key Features:**
+- ✅ Counter management with increment/decrement/reset
+- ✅ Theme toggle (Light/Dark mode)
+- ✅ Dynamic status messages based on counter value
+- ✅ Interactive UI feedback
+- ✅ Well-documented code with comments
+- ✅ Professional styling with Material Design
+
+---
+
+### 📱 User Interactions
+
+**The Interactive Counter responds to:**
+- ⬇️ Decrease Button - Reduces counter (minimum: 0)
+- ⬆️ Increase Button - Increments counter
+- 🔄 Reset Button - Returns counter to 0
+- 🌙 Theme Toggle - Switches between light and dark modes
+- 📊 Dynamic Messages - Changes based on counter value:
+  - 0: "Click to start counting!"
+  - 1-5: "Keep clicking to reach 10!"
+  - 6-10: "You're making progress!"
+  - 11+: "Count is above 10!"
+
+---
+
+### 💡 Reflection & Learning Outcomes
+
+#### **How do Stateful widgets make Flutter apps dynamic?**
+Stateful widgets enable dynamic behavior by maintaining mutable state that can change in response to user interactions or other events. Through `setState()`, they notify Flutter's rendering engine to rebuild the UI, creating a responsive and interactive experience. This is the core mechanism that transforms static layouts into engaging, interactive applications.
+
+The key advantage is that only the affected widgets are rebuilt, not the entire app. This efficient rebuilding process is what makes Flutter apps so performant and smooth.
+
+#### **Why is it important to separate static and reactive parts of the UI?**
+Separating static (Stateless) and reactive (Stateful) components is crucial for several reasons:
+
+1. **Performance:** Stateless widgets are more efficient for static content, reducing unnecessary rebuilds.
+
+2. **Clarity:** Code is more readable and maintainable when the intent is clear—some UI is static, some is dynamic.
+
+3. **Reusability:** Stateless widgets can be reused easily across different parts of the app without worrying about state conflicts.
+
+4. **Testing:** Static widgets are easier to test than stateful ones.
+
+5. **Scalability:** As apps grow, this separation prevents tangled state management and makes code organization clearer.
+
+6. **Best Practices:** Following this pattern aligns with Flutter and software engineering best practices, making collaboration easier in team environments.
+
+---
+
+### 📸 Visual Documentation
+
+The demo app displays:
+- Clear visual distinction between static and interactive elements
+- Color-coded sections for easy understanding
+- Real-time visual feedback on state changes
+- Professional Material Design styling
+
+---
+
+### 🔗 Code Structure
+
+```
+lib/
+├── main.dart (Updated to load StatelessStatefulDemo)
+└── screens/
+    └── stateless_stateful_demo.dart (Main implementation)
+        ├── AppHeader (StatelessWidget)
+        ├── InfoCard (StatelessWidget)
+        ├── InteractiveCounter (StatefulWidget)
+        └── StatelessStatefulDemo (Main Screen - StatelessWidget)
+```
+
+---
+
+### 🎓 Resources & References
+
+- [Flutter StatelessWidget Documentation](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html)
+- [Flutter StatefulWidget Documentation](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html)
+- [Flutter setState Documentation](https://api.flutter.dev/flutter/widgets/State/setState.html)
+- [Flutter Official Guide on State Management](https://docs.flutter.dev/data-and-backend/state-mgmt)
+- [Flutter Codelabs](https://docs.flutter.dev/codelabs)
+
+---
+
+### ✅ Acceptance Criteria
+
+- ✅ StatelessWidget component created and integrated
+- ✅ StatefulWidget component created with state management
+- ✅ Interactive elements respond to user input
+- ✅ UI updates dynamically on state changes
+- ✅ Both widget types demonstrated clearly
+- ✅ Code is well-documented and commented
+- ✅ App runs without errors
+- ✅ UI is responsive and visually appealing
+- ✅ README includes comprehensive documentation
+- ✅ Clear explanation of when to use each widget type
