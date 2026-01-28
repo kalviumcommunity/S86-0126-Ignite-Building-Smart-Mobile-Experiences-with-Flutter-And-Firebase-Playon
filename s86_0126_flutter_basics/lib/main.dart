@@ -8,6 +8,7 @@ import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/second_screen.dart';
 import 'screens/stateless_stateful_demo.dart';
+import 'screens/responsive_layout.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/hot-reload': (context) => const HotReloadDemoScreen(),
         '/stateless-stateful': (context) => const StatelessStatefulDemo(),
         '/second': (context) => const SecondScreen(),
+        '/responsive-layout': (context) => const ResponsiveLayout(),
       },
     );
   }

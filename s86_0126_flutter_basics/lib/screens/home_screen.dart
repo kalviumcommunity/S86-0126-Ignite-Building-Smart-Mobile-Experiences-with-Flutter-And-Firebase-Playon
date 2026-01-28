@@ -145,6 +145,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     features: ['Navigator.pop()', 'Named Routes', 'Back Button'],
                   ),
                 ),
+                const SizedBox(height: 16),
+
+                // Responsive Layout Demo Card
+                GestureDetector(
+                  onTap: () =>
+                      _navigateToScreen('/responsive-layout', 'Responsive Layout'),
+                  child: _buildDemoCard(
+                    icon: Icons.dashboard,
+                    iconColor: Colors.deepOrange,
+                    title: 'Responsive Layout Design',
+                    description:
+                        'Learn about Container, Row, Column, and responsive design principles',
+                    features: ['MediaQuery', 'Adaptive Layouts', 'Grid Design'],
+                  ),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
