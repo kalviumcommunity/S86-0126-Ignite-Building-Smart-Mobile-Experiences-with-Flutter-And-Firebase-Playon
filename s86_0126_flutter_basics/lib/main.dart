@@ -3,9 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'screens/hot_reload_demo.dart';
-// import 'screens/login_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/signup_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/second_screen.dart';
+import 'screens/stateless_stateful_demo.dart';
 // import 'screens/widget_tree_demo.dart';
-// import 'screens/stateless_stateful_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
 void main() async {
@@ -21,9 +24,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HotReloadDemoScreen(), // 🔥 Hot Reload & DevTools Demo
+      title: 'Flutter Fundamentals Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+      ),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/hot-reload': (context) => const HotReloadDemoScreen(),
+        '/stateless-stateful': (context) => const StatelessStatefulDemo(),
+        '/second': (context) => const SecondScreen(),
+      },
     );
   }
 }
