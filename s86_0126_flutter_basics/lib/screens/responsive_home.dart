@@ -14,7 +14,7 @@ class _ResponsiveHomeState extends State<ResponsiveHome> {
   Widget build(BuildContext context) {
     // MediaQuery to get screen size
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    // final double screenHeight = MediaQuery.of(context).size.height;
 
     // Check if device is tablet
     final bool isTablet = screenWidth > 600;
