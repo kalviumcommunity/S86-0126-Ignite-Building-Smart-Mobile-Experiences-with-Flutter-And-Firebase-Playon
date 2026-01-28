@@ -4,6 +4,7 @@ import 'firebase_options.dart';
 
 import 'screens/login_screen.dart';
 import 'screens/widget_tree_demo.dart';
+import 'screens/stateless_stateful_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
 void main() async {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const WidgetTreeDemo(), // 🔥 Start with Auth
+      home: StatelessStatefulDemo(), // 🔥 Demo for Stateless & Stateful Widgets
     );
   }
 }
