@@ -160,6 +160,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     features: ['MediaQuery', 'Adaptive Layouts', 'Grid Design'],
                   ),
                 ),
+                const SizedBox(height: 16),
+
+                // Scrollable Views Demo Card
+                GestureDetector(
+                  onTap: () =>
+                      _navigateToScreen('/scrollable-views', 'Scrollable Views'),
+                  child: _buildDemoCard(
+                    icon: Icons.list,
+                    iconColor: Colors.teal,
+                    title: 'Scrollable Views - Tournament Tracker',
+                    description:
+                        'Explore ListView and GridView for displaying live scores, tournaments, and player stats',
+                    features: ['ListView.builder', 'GridView.builder', 'Live Data'],
+                  ),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
