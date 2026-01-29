@@ -423,7 +423,7 @@ class _HotReloadDemoScreenState extends State<HotReloadDemoScreen>
           Switch(
             value: _showExtraContent,
             onChanged: (_) => _toggleExtraContent(),
-            activeColor: Colors.purple,
+            activeThumbColor: Colors.purple,
           ),
         ],
       ),

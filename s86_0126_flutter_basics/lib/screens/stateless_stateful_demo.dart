@@ -243,7 +243,7 @@ class _InteractiveCounterState extends State<InteractiveCounter> {
                   onChanged: (value) {
                     _toggleDarkMode();
                   },
-                  activeColor: Colors.orange,
+                  activeThumbColor: Colors.orange,
                   inactiveThumbColor: Colors.blue,
                 ),
               ],
