@@ -190,6 +190,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     features: ['TextFormField', 'Validation Logic', 'SnackBar Feedback'],
                   ),
                 ),
+                const SizedBox(height: 16),
+
+                // State Management Demo Card
+                GestureDetector(
+                  onTap: () =>
+                      _navigateToScreen('/state-management', 'State Management Demo'),
+                  child: _buildDemoCard(
+                    icon: Icons.refresh,
+                    iconColor: Colors.deepPurple,
+                    title: 'State Management - setState() Demo',
+                    description:
+                        'Master local state management with setState() and build interactive, responsive UIs',
+                    features: ['setState()', 'Dynamic UI', 'Conditional Rendering'],
+                  ),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
