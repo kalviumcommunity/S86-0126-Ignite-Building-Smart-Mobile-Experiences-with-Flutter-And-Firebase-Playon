@@ -10,6 +10,7 @@ import 'screens/second_screen.dart';
 import 'screens/stateless_stateful_demo.dart';
 import 'screens/responsive_layout.dart';
 import 'screens/scrollable_views.dart';
+import 'screens/user_input_form.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/second': (context) => const SecondScreen(),
         '/responsive-layout': (context) => const ResponsiveLayout(),
         '/scrollable-views': (context) => const ScrollableViews(),
+        '/user-input': (context) => const UserInputForm(),
       },
     );
   }
