@@ -175,6 +175,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     features: ['ListView.builder', 'GridView.builder', 'Live Data'],
                   ),
                 ),
+                const SizedBox(height: 16),
+
+                // User Input Form Demo Card
+                GestureDetector(
+                  onTap: () =>
+                      _navigateToScreen('/user-input', 'User Input Form'),
+                  child: _buildDemoCard(
+                    icon: Icons.app_registration,
+                    iconColor: Colors.pink,
+                    title: 'User Input Form - Tournament Registration',
+                    description:
+                        'Learn form validation with TextFormField, buttons, and real-time feedback messages',
+                    features: ['TextFormField', 'Validation Logic', 'SnackBar Feedback'],
+                  ),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
