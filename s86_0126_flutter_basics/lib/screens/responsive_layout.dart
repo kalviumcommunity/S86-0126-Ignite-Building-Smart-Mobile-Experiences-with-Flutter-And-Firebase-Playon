@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/index.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   const ResponsiveLayout({super.key});
@@ -263,7 +264,10 @@ class ResponsiveLayout extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton.icon(
+                    child: CustomButton(
+                      label: 'Verify Responsive',
+                      icon: Icons.check,
+                      color: Colors.green,
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -272,25 +276,18 @@ class ResponsiveLayout extends StatelessWidget {
                           ),
                         );
                       },
-                      icon: const Icon(Icons.check),
-                      label: const Text('Verify Responsive'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: OutlinedButton.icon(
+                    child: CustomButton(
+                      label: 'Back',
+                      icon: Icons.arrow_back,
+                      color: Colors.grey,
+                      isOutlined: true,
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.arrow_back),
-                      label: const Text('Back'),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
                     ),
                   ),
                 ],

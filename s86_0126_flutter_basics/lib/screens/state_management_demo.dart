@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/index.dart';
 
 class StateManagementDemo extends StatefulWidget {
   const StateManagementDemo({super.key});
@@ -190,30 +191,18 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton.icon(
+                        CustomButton(
+                          label: 'Decrease',
+                          icon: Icons.remove,
                           onPressed: _decrementCounter,
-                          icon: const Icon(Icons.remove),
-                          label: const Text('Decrease'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.redAccent,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 12,
-                            ),
-                          ),
+                          color: Colors.redAccent,
                         ),
                         const SizedBox(width: 12),
-                        ElevatedButton.icon(
+                        CustomButton(
+                          label: 'Increase',
+                          icon: Icons.add,
                           onPressed: _incrementCounter,
-                          icon: const Icon(Icons.add),
-                          label: const Text('Increase'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.greenAccent,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 12,
-                            ),
-                          ),
+                          color: Colors.green,
                         ),
                       ],
                     ),

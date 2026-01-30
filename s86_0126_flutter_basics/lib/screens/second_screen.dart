@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/index.dart';
 
 class SecondScreen extends StatelessWidget {
   const SecondScreen({super.key});
@@ -109,24 +110,15 @@ class SecondScreen extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // Back to Home Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      debugPrint(
-                          '📱 [NAVIGATION] Navigating back to Home from Second Screen');
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Back to Home'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
+                CustomButton(
+                  label: 'Back to Home',
+                  icon: Icons.arrow_back,
+                  onPressed: () {
+                    debugPrint(
+                        '📱 [NAVIGATION] Navigating back to Home from Second Screen');
+                    Navigator.pop(context);
+                  },
+                  color: Colors.purple,
                 ),
               ],
             ),

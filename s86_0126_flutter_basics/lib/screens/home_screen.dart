@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -104,106 +105,92 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
 
                 // Hot Reload Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.flash_on,
+                  iconColor: Colors.amber,
+                  title: 'Hot Reload Demo',
+                  description:
+                      'See the power of Hot Reload with interactive components and debug logging',
+                  features: ['Counter', 'Color Cycling', 'Slider', 'Theme Toggle'],
                   onTap: () => _navigateToScreen('/hot-reload', 'Hot Reload Demo'),
-                  child: _buildDemoCard(
-                    icon: Icons.flash_on,
-                    iconColor: Colors.amber,
-                    title: 'Hot Reload Demo',
-                    description:
-                        'See the power of Hot Reload with interactive components and debug logging',
-                    features: ['Counter', 'Color Cycling', 'Slider', 'Theme Toggle'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // Stateless/Stateful Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.widgets,
+                  iconColor: Colors.blue,
+                  title: 'Stateless & Stateful Widgets',
+                  description:
+                      'Learn the difference between stateless and stateful widgets',
+                  features: ['Counter Widget', 'Theme Toggle', 'State Management'],
                   onTap: () =>
                       _navigateToScreen('/stateless-stateful', 'Widgets Demo'),
-                  child: _buildDemoCard(
-                    icon: Icons.widgets,
-                    iconColor: Colors.blue,
-                    title: 'Stateless & Stateful Widgets',
-                    description:
-                        'Learn the difference between stateless and stateful widgets',
-                    features: ['Counter Widget', 'Theme Toggle', 'State Management'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // Second Screen Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.dashboard_customize,
+                  iconColor: Colors.purple,
+                  title: 'Second Screen',
+                  description:
+                      'Navigate to a secondary screen demonstrating multi-screen navigation',
+                  features: ['Navigator.pop()', 'Named Routes', 'Back Button'],
                   onTap: () =>
                       _navigateToScreen('/second', 'Second Screen'),
-                  child: _buildDemoCard(
-                    icon: Icons.dashboard_customize,
-                    iconColor: Colors.purple,
-                    title: 'Second Screen',
-                    description:
-                        'Navigate to a secondary screen demonstrating multi-screen navigation',
-                    features: ['Navigator.pop()', 'Named Routes', 'Back Button'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // Responsive Layout Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.dashboard,
+                  iconColor: Colors.deepOrange,
+                  title: 'Responsive Layout Design',
+                  description:
+                      'Learn about Container, Row, Column, and responsive design principles',
+                  features: ['MediaQuery', 'Adaptive Layouts', 'Grid Design'],
                   onTap: () =>
                       _navigateToScreen('/responsive-layout', 'Responsive Layout'),
-                  child: _buildDemoCard(
-                    icon: Icons.dashboard,
-                    iconColor: Colors.deepOrange,
-                    title: 'Responsive Layout Design',
-                    description:
-                        'Learn about Container, Row, Column, and responsive design principles',
-                    features: ['MediaQuery', 'Adaptive Layouts', 'Grid Design'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // Scrollable Views Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.list,
+                  iconColor: Colors.teal,
+                  title: 'Scrollable Views - Tournament Tracker',
+                  description:
+                      'Explore ListView and GridView for displaying live scores, tournaments, and player stats',
+                  features: ['ListView.builder', 'GridView.builder', 'Live Data'],
                   onTap: () =>
                       _navigateToScreen('/scrollable-views', 'Scrollable Views'),
-                  child: _buildDemoCard(
-                    icon: Icons.list,
-                    iconColor: Colors.teal,
-                    title: 'Scrollable Views - Tournament Tracker',
-                    description:
-                        'Explore ListView and GridView for displaying live scores, tournaments, and player stats',
-                    features: ['ListView.builder', 'GridView.builder', 'Live Data'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // User Input Form Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.app_registration,
+                  iconColor: Colors.pink,
+                  title: 'User Input Form - Tournament Registration',
+                  description:
+                      'Learn form validation with TextFormField, buttons, and real-time feedback messages',
+                  features: ['TextFormField', 'Validation Logic', 'SnackBar Feedback'],
                   onTap: () =>
                       _navigateToScreen('/user-input', 'User Input Form'),
-                  child: _buildDemoCard(
-                    icon: Icons.app_registration,
-                    iconColor: Colors.pink,
-                    title: 'User Input Form - Tournament Registration',
-                    description:
-                        'Learn form validation with TextFormField, buttons, and real-time feedback messages',
-                    features: ['TextFormField', 'Validation Logic', 'SnackBar Feedback'],
-                  ),
                 ),
                 const SizedBox(height: 16),
 
                 // State Management Demo Card
-                GestureDetector(
+                CustomCard(
+                  icon: Icons.refresh,
+                  iconColor: Colors.deepPurple,
+                  title: 'State Management - setState() Demo',
+                  description:
+                      'Master local state management with setState() and build interactive, responsive UIs',
+                  features: ['setState()', 'Dynamic UI', 'Conditional Rendering'],
                   onTap: () =>
                       _navigateToScreen('/state-management', 'State Management Demo'),
-                  child: _buildDemoCard(
-                    icon: Icons.refresh,
-                    iconColor: Colors.deepPurple,
-                    title: 'State Management - setState() Demo',
-                    description:
-                        'Master local state management with setState() and build interactive, responsive UIs',
-                    features: ['setState()', 'Dynamic UI', 'Conditional Rendering'],
-                  ),
                 ),
                 const SizedBox(height: 32),
 
@@ -275,92 +262,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildDemoCard({
-    required IconData icon,
-    required Color iconColor,
-    required String title,
-    required String description,
-    required List<String> features,
-  }) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: iconColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Icon(icon, color: iconColor, size: 28),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        description,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(Icons.arrow_forward, color: Colors.grey[400]),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              children: features
-                  .map(
-                    (feature) => Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        feature,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildStatCard(String count, String label) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -398,3 +299,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
