@@ -192,6 +192,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () =>
                       _navigateToScreen('/state-management', 'State Management Demo'),
                 ),
+                const SizedBox(height: 16),
+
+                // Asset Management Demo Card
+                CustomCard(
+                  icon: Icons.image,
+                  iconColor: Colors.cyan,
+                  title: 'Managing Assets - Images & Icons',
+                  description:
+                      'Learn how to add, register, and display images, icons, and local assets in Flutter',
+                  features: ['Image.asset()', 'Built-in Icons', 'Asset Configuration'],
+                  onTap: () =>
+                      _navigateToScreen('/asset-demo', 'Asset Management Demo'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
