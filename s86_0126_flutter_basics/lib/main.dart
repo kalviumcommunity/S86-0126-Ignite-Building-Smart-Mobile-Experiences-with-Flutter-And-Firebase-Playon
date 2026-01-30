@@ -13,6 +13,7 @@ import 'screens/scrollable_views.dart';
 import 'screens/user_input_form.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/asset_demo.dart';
+import 'screens/animation_demo.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         '/user-input': (context) => const UserInputForm(),
         '/state-management': (context) => const StateManagementDemo(),
         '/asset-demo': (context) => const AssetDemoScreen(),
+        '/animation-demo': (context) => const AnimationDemoScreen(),
       },
     );
   }

@@ -205,6 +205,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () =>
                       _navigateToScreen('/asset-demo', 'Asset Management Demo'),
                 ),
+                const SizedBox(height: 16),
+
+                // Animations & Transitions Demo Card
+                CustomCard(
+                  icon: Icons.animation,
+                  iconColor: Colors.deepPurple,
+                  title: 'Animations & Transitions',
+                  description:
+                      'Master implicit and explicit animations to create smooth, professional UI transitions and effects',
+                  features: ['AnimatedContainer', 'RotationTransition', 'PageRouteBuilder'],
+                  onTap: () =>
+                      _navigateToScreen('/animation-demo', 'Animations & Transitions'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
