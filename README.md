@@ -457,3 +457,60 @@ Application finished.
 ---
 
 If you'd like, I can create the PR branch and push these changes for you (I will not modify the login/signup screens). 🔧
+# 🔐 Firebase Authentication (Email & Password) – Flutter
+
+This project demonstrates **Email & Password authentication** in a Flutter app using **Firebase Authentication**.  
+Users can **sign up**, **log in**, **log out**, and have their authentication state securely managed by Firebase — without building a custom backend.
+
+---
+
+## 🚀 Features
+
+- User **Signup** with Email & Password  
+- User **Login** with Email & Password  
+- Firebase-managed **secure authentication**
+- Authentication state handling
+- Error handling with user-friendly messages
+- Verified users visible in **Firebase Console**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Flutter**
+- **Firebase Authentication**
+- **Firebase Core**
+
+---
+
+## 📋 Prerequisites
+
+Before running this project, make sure:
+
+- Flutter SDK is installed
+- Firebase project is created
+- Firebase SDK is already integrated into the Flutter project
+- `firebase_options.dart` is generated using FlutterFire CLI
+
+---
+
+## 🔧 Setup Instructions
+
+### 1️⃣ Enable Email & Password Authentication
+
+1. Go to **Firebase Console**
+2. Select your project
+3. Navigate to **Authentication → Sign-in method**
+4. Enable **Email/Password**
+5. Click **Save**
+
+---
+
+### 2️⃣ Add Dependencies
+
+In `pubspec.yaml`:
+
+```yaml
+dependencies:
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
