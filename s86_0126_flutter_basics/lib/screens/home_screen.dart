@@ -233,6 +233,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () =>
                       _navigateToScreen('/animation-demo', 'Animations & Transitions'),
                 ),
+                const SizedBox(height: 16),
+
+                // Tasks / Firestore Demo Card
+                CustomCard(
+                  icon: Icons.task,
+                  iconColor: Colors.indigo,
+                  title: 'Tasks - Firestore Writes',
+                  description:
+                      'Add and update tasks in Cloud Firestore with safe writes and validation',
+                  features: ['Add (auto-id)', 'Update (merge)', 'Real-time list'],
+                  onTap: () => _navigateToScreen('/tasks', 'Tasks'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
