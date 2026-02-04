@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../widgets/index.dart';
+import '../services/auth_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,24 +11,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AuthService _authService = AuthService();
+
   @override
   void initState() {
     super.initState();
     debugPrint('🏠 [HOME] HomeScreen initialized');
   }
 
-  void _handleLogout() {
-    debugPrint('👋 [LOGOUT] User logged out');
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Logged out successfully'),
-        backgroundColor: Colors.red,
-      ),
-    );
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.pushReplacementNamed(context, '/login');
-    });
+  void _handleLogout() async {
+    try {
+      await _authService.logout();
+      debugPrint('👋 [LOGOUT] User logged out');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Logged out successfully'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      // Navigation is handled by StreamBuilder in main.dart
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Logout error: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   void _navigateToScreen(String routeName, String screenName) {
@@ -36,10 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text('Welcome, ${user?.email ?? 'User'}'),
         centerTitle: true,
         backgroundColor: Colors.green,
         elevation: 0,
