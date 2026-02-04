@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final VoidCallback? onToggleMode;
+
+  const LoginScreen({super.key, this.onToggleMode});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -10,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
   bool _obscurePassword = true;
   bool _isLoading = false;
 
@@ -20,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _handleLogin() {
+  void _handleLogin() async {
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -35,19 +39,32 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    // Simulate login delay
-    Future.delayed(const Duration(seconds: 2), () {
+    try {
+      final user = await _authService.login(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
+      
+      if (user != null && mounted) {
+        debugPrint('🔑 [LOGIN] User logged in: ${user.email}');
+        // Navigation is handled by StreamBuilder in main.dart
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
       if (mounted) {
         setState(() {
           _isLoading = false;
         });
-
-        debugPrint('🔑 [LOGIN] User logged in: ${_emailController.text}');
-
-        // Navigate to Home screen
-        Navigator.pushReplacementNamed(context, '/home');
       }
-    });
+    }
   }
 
   @override
@@ -301,7 +318,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: widget.onToggleMode ?? () {
                         debugPrint(
                             '📝 [NAVIGATION] Navigating to SignUp screen');
                         Navigator.pushNamed(context, '/signup');

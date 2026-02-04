@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 
+import 'screens/auth_screen.dart';
 import 'screens/hot_reload_demo.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
@@ -37,7 +39,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      initialRoute: '/login',
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          // Connection state handling
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+
+          // If user is logged in, show HomeScreen
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+
+          // If user is not logged in, show AuthScreen
+          return const AuthScreen();
+        },
+      ),
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignupScreen(),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+  final VoidCallback? onToggleMode;
+
+  const SignupScreen({super.key, this.onToggleMode});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -13,6 +16,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final AuthService _authService = AuthService();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _isLoading = false;
@@ -27,7 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
     super.dispose();
   }
 
-  void _handleSignUp() {
+  void _handleSignUp() async {
     if (_nameController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _passwordController.text.isEmpty ||
@@ -75,29 +79,31 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
 
-    // Simulate signup delay
-    Future.delayed(const Duration(seconds: 2), () {
+    try {
+      final user = await _authService.signUp(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
+
+      if (user != null && mounted) {
+        debugPrint('✅ [SIGNUP] User registered: ${user.email}');
+        debugPrint('👤 [SIGNUP] Name: ${_nameController.text}');
+
+        // Navigation is handled by StreamBuilder in main.dart
+      }
+    } catch (e) {
       if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
         setState(() {
           _isLoading = false;
         });
-
-        debugPrint('✅ [SIGNUP] User registered: ${_emailController.text}');
-        debugPrint('👤 [SIGNUP] Name: ${_nameController.text}');
-
-        // Show success and navigate to home
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Account created successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.pushReplacementNamed(context, '/home');
-        });
       }
-    });
+    }
   }
 
   @override
@@ -375,7 +381,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: widget.onToggleMode ?? () {
                         debugPrint(
                             '📝 [NAVIGATION] Navigating back to Login screen');
                         Navigator.pushNamed(context, '/login');
