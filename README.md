@@ -398,6 +398,168 @@ flutterfire --version
 
 ```bash
 flutterfire configure
+```
+
+---
+
+## 🔐 Firestore Database Schema (Sprint 2) ✅
+
+**Short description:** A Firestore schema designed to support community sports tournaments with scalable collections for users, tournaments, teams, matches, players, venues and real-time match events/score updates.
+
+### 📋 Data Requirements List
+- Users (profiles, roles)
+- Players (profiles, stats)
+- Tournaments (metadata, dates, status)
+- Teams (per tournament, members)
+- Matches (per tournament: schedule, scores, status)
+- Match events / score updates (time-series of events)
+- Venues (location data)
+- Registrations (teams/users registered for tournaments)
+
+---
+
+### 🔧 Firestore Schema
+- users (collection)
+  - userId (document)
+    - name: string
+    - email: string
+    - displayName: string
+    - photoUrl: string
+    - role: string ("admin" | "organizer" | "player" | "spectator")
+    - createdAt: timestamp
+    - updatedAt: timestamp
+
+- players (collection)
+  - playerId
+    - name: string
+    - dob: timestamp
+    - teamIds: array<string>
+    - jerseyNumber: number
+    - profilePhotoUrl: string
+    - createdAt: timestamp
+
+- tournaments (collection)
+  - tournamentId
+    - name: string
+    - description: string
+    - startDate: timestamp
+    - endDate: timestamp
+    - status: string ("UPCOMING" | "LIVE" | "COMPLETED")
+    - locationId: string (venue ref)
+    - createdBy: string (userId)
+    - participantsCount: number
+    - createdAt: timestamp
+
+- tournaments/{tournamentId}/teams (subcollection)
+  - teamId
+    - name: string
+    - coach: string
+    - members: array<string> (playerIds) OR use subcollection members/
+
+- tournaments/{tournamentId}/matches (subcollection)
+  - matchId
+    - teamAId: string
+    - teamBId: string
+    - scoreA: number
+    - scoreB: number
+    - status: string ("SCHEDULED" | "LIVE" | "COMPLETED")
+    - scheduledAt: timestamp
+    - venueId: string
+    - createdAt: timestamp
+
+- tournaments/{tournamentId}/matches/{matchId}/events (subcollection)
+  - eventId
+    - type: string ("score" | "foul" | "sub" | "timeout")
+    - playerId: string
+    - teamId: string
+    - value: map (e.g., {points: 2})
+    - timestamp: timestamp
+
+- venues (collection)
+  - venueId
+    - name: string
+    - address: string
+    - geoPoint: geopoint
+    - capacity: number
+
+**Design notes:**
+- Use lowerCamelCase for fields
+- Use timestamps (createdAt/updatedAt) for sorting and queries
+- Use subcollections for data that can grow large (matches/events) to avoid large arrays in a single document
+- Store references as strings or Firestore `Reference` types for joins
+
+---
+
+### 📄 Sample JSON Documents
+**User (users/user123)**
+```json
+{
+  "name": "Asha Patel",
+  "email": "asha@example.com",
+  "displayName": "Asha",
+  "role": "organizer",
+  "createdAt": "2026-01-28T12:34:56Z"
+}
+```
+
+**Tournament (tournaments/tourn001)**
+```json
+{
+  "name": "City Basketball Championship 2026",
+  "startDate": "2026-02-10T09:00:00Z",
+  "endDate": "2026-02-20T18:00:00Z",
+  "status": "UPCOMING",
+  "createdBy": "user123",
+  "participantsCount": 16
+}
+```
+
+**Match (tournaments/tourn001/matches/matchA1)**
+```json
+{
+  "teamAId": "teamA",
+  "teamBId": "teamB",
+  "scoreA": 72,
+  "scoreB": 68,
+  "status": "LIVE",
+  "scheduledAt": "2026-02-11T14:30:00Z"
+}
+```
+
+**Event (tournaments/tourn001/matches/matchA1/events/evt1)**
+```json
+{
+  "type": "score",
+  "playerId": "player77",
+  "teamId": "teamA",
+  "value": { "points": 2 },
+  "timestamp": "2026-02-11T14:35:12Z"
+}
+```
+
+---
+
+### 🗺️ Schema Diagram
+Diagram included in repository: `s86_0126_flutter_basics/assets/diagrams/firestore_schema.svg` (shows collections, docs, and subcollection relationships).
+
+---
+
+### 🔍 Reflection
+- Why this structure? Subcollections for `matches` and `events` allow per-tournament isolation and efficient streaming of live events without loading unrelated data. Player profiles live in a top-level collection for reuse across tournaments.
+- Scalability: using subcollections and avoiding large arrays ensures reads are targeted and cost-efficient as data grows to thousands of matches or events.
+- Challenges: modeling relationships (e.g., players appearing in multiple teams across tournaments) required storing `teamIds` arrays on players and using team-level membership documents where necessary.
+
+---
+
+### 📦 Submission Guidance (for Sprint PR)
+- Commit message: `feat: designed Firestore schema and added database diagram`
+- PR title: `[Sprint-2] Firestore Database Schema Design – TeamName`
+- PR description should include: schema explanation, diagram (attached or linked), sample documents, and short reflection bullet points.
+
+---
+
+*If you'd like I can also add a short demo script or Firestore seed JSON examples in `assets/data/` to make the next step (CRUD implementation) faster.*
+
 # selected existing Firebase project
 # FlutterFire CLI generated the platform configs
 # lib/firebase_options.dart was created

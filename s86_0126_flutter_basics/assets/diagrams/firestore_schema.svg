@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill: #f8fafc; stroke: #0f172a; stroke-width:1.5; }
+    .title { font: bold 14px sans-serif; fill:#0f172a }
+    .field { font: 12px monospace; fill:#0b1220 }
+    .arrow { stroke:#0f172a; stroke-width:1.2; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <!-- Users -->
+  <rect x="40" y="40" width="240" height="120" rx="8" class="box" />
+  <text x="60" y="64" class="title">users (collection)</text>
+  <text x="60" y="86" class="field">userId (doc)</text>
+  <text x="60" y="102" class="field">name: string</text>
+  <text x="60" y="118" class="field">email: string</text>
+  <text x="60" y="134" class="field">createdAt: timestamp</text>
+
+  <!-- Players -->
+  <rect x="340" y="40" width="240" height="120" rx="8" class="box" />
+  <text x="360" y="64" class="title">players (collection)</text>
+  <text x="360" y="86" class="field">playerId (doc)</text>
+  <text x="360" y="102" class="field">name: string</text>
+  <text x="360" y="118" class="field">teamIds: array&lt;string&gt;</text>
+  <text x="360" y="134" class="field">profilePhotoUrl: string</text>
+
+  <!-- Tournaments -->
+  <rect x="40" y="220" width="240" height="150" rx="8" class="box" />
+  <text x="60" y="244" class="title">tournaments (collection)</text>
+  <text x="60" y="268" class="field">tournamentId (doc)</text>
+  <text x="60" y="286" class="field">name: string</text>
+  <text x="60" y="304" class="field">startDate: timestamp</text>
+  <text x="60" y="322" class="field">status: string (LIVE/UPCOMING/COMPLETED)</text>
+
+  <!-- Subcollection: teams -->
+  <rect x="340" y="220" width="240" height="130" rx="8" class="box" />
+  <text x="360" y="244" class="title">tournaments/{tId}/teams</text>
+  <text x="360" y="266" class="field">teamId (doc)</text>
+  <text x="360" y="284" class="field">name: string</text>
+  <text x="360" y="302" class="field">coach: string</text>
+  <text x="360" y="320" class="field">members: array&lt;playerId&gt; OR subcollection</text>
+
+  <!-- Subcollection: matches -->
+  <rect x="640" y="220" width="240" height="150" rx="8" class="box" />
+  <text x="660" y="244" class="title">tournaments/{tId}/matches</text>
+  <text x="660" y="268" class="field">matchId (doc)</text>
+  <text x="660" y="286" class="field">teamAId: string</text>
+  <text x="660" y="302" class="field">teamBId: string</text>
+  <text x="660" y="320" class="field">scoreA: number, scoreB: number</text>
+  <text x="660" y="338" class="field">status: string, scheduledAt: timestamp</text>
+
+  <!-- Subcollection: events -->
+  <rect x="340" y="400" width="240" height="120" rx="8" class="box" />
+  <text x="360" y="424" class="title">tournaments/{tId}/matches/{mId}/events</text>
+  <text x="360" y="446" class="field">eventId (doc)</text>
+  <text x="360" y="464" class="field">type: string (score/foul)</text>
+  <text x="360" y="482" class="field">playerId: string, timestamp</text>
+
+  <!-- Arrows -->
+  <line x1="160" y1="160" x2="480" y2="220" class="arrow" />
+  <line x1="460" y1="160" x2="400" y2="220" class="arrow" />
+  <line x1="460" y1="340" x2="640" y2="340" class="arrow" />
+
+  <!-- Legend -->
+  <text x="40" y="540" class="field">Notes: Use lowerCamelCase, timestamps for createdAt/updatedAt, prefer subcollections for data that grows large (events, matches).</text>
+</svg>
