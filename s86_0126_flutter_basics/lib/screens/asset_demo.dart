@@ -495,21 +495,25 @@ class AssetDemoScreen extends StatelessWidget {
       imagePath,
       fit: BoxFit.contain,
       errorBuilder: (context, error, stackTrace) {
+        // Make the error UI small and flexible to avoid RenderFlex overflow
         return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.image_not_supported, color: Colors.grey, size: 48),
-              const SizedBox(height: 8),
-              Text(
-                'Image not loaded\n$imagePath',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.image_not_supported, color: Colors.grey, size: 36),
+                const SizedBox(height: 6),
+                Text(
+                  'Image not loaded\n$imagePath',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
