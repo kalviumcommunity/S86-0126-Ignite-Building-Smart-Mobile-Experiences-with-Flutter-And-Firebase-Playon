@@ -18,6 +18,7 @@ import 'screens/asset_demo.dart';
 import 'screens/animation_demo.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/query_demo_screen.dart';
+import 'screens/upload_demo_screen.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
         '/animation-demo': (context) => const AnimationDemoScreen(),
         '/tasks': (context) => const TasksScreen(),
         '/queries': (context) => const QueryDemoScreen(),
+        '/upload': (context) => const UploadDemoScreen(),
       },
     );
   }
