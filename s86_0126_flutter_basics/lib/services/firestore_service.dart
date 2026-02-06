@@ -49,6 +49,35 @@ class FirestoreService {
         .snapshots();
   }
 
+  /// Return only active (not completed) tasks for a user, ordered by creation date.
+  Stream<QuerySnapshot> getActiveTasks(String uid) {
+    return tasks
+        .where('uid', isEqualTo: uid)
+        .where('isCompleted', isEqualTo: false)
+        .orderBy('createdAt', descending: true)
+        .snapshots();
+  }
+
+  /// Return recent tasks limited to [limit]. Useful for pagination / top-N lists.
+  Stream<QuerySnapshot> getRecentTasks(String uid, int limit) {
+    return tasks
+        .where('uid', isEqualTo: uid)
+        .orderBy('createdAt', descending: true)
+        .limit(limit)
+        .snapshots();
+  }
+
+  /// Example of a title prefix search using startAt / endAt pattern.
+  Stream<QuerySnapshot> getTasksByTitlePrefix(String uid, String prefix) {
+    final end = '$prefix\uf8ff';
+    return tasks
+        .where('uid', isEqualTo: uid)
+        .orderBy('title')
+        .startAt([prefix])
+        .endAt([end])
+        .snapshots();
+  }
+
   Future<void> updateTask(String docId, Map<String, dynamic> data) {
     return tasks.doc(docId).set(data, SetOptions(merge: true));
   }
