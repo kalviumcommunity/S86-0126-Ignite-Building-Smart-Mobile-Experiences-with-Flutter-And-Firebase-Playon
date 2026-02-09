@@ -23,6 +23,7 @@ import 'screens/query_demo_screen.dart';
 import 'screens/upload_demo_screen.dart';
 import 'screens/cloud_functions_demo.dart';
 import 'screens/push_notifications_demo.dart';
+import 'screens/firestore_security_demo.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
         '/upload': (context) => const UploadDemoScreen(),
         '/cloud-functions': (context) => const CloudFunctionsDemoScreen(),
         '/push-notifications': (context) => const PushNotificationsDemoScreen(),
+        '/firestore-security': (context) => const FirestoreSecurityDemoScreen(),
       },
     );
   }
