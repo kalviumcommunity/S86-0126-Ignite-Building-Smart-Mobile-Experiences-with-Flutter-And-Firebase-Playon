@@ -245,6 +245,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   features: ['Add (auto-id)', 'Update (merge)', 'Real-time list'],
                   onTap: () => _navigateToScreen('/tasks', 'Tasks'),
                 ),
+                const SizedBox(height: 16),
+
+                // Cloud Functions Demo Card
+                CustomCard(
+                  icon: Icons.cloud_done,
+                  iconColor: Colors.deepPurple,
+                  title: 'Cloud Functions - Serverless Backend',
+                  description:
+                      'Trigger callable functions and event-based Firestore triggers for tournament management',
+                  features: ['Callable Functions', 'Firestore Triggers', 'Real-time Logs'],
+                  onTap: () =>
+                      _navigateToScreen('/cloud-functions', 'Cloud Functions Demo'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
