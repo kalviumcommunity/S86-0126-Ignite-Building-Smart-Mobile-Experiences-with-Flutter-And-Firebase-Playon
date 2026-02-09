@@ -258,6 +258,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () =>
                       _navigateToScreen('/cloud-functions', 'Cloud Functions Demo'),
                 ),
+                const SizedBox(height: 16),
+
+                // Push Notifications Demo Card
+                CustomCard(
+                  icon: Icons.notifications_active,
+                  iconColor: Colors.deepOrange,
+                  title: 'Push Notifications - Firebase Cloud Messaging',
+                  description:
+                      'Receive real-time push notifications from Firebase Cloud Messaging (FCM) with live score updates',
+                  features: ['FCM Integration', 'Device Token', 'Foreground & Background'],
+                  onTap: () =>
+                      _navigateToScreen('/push-notifications', 'Push Notifications Demo'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
