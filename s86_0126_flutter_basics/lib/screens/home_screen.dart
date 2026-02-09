@@ -271,6 +271,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () =>
                       _navigateToScreen('/push-notifications', 'Push Notifications Demo'),
                 ),
+                const SizedBox(height: 16),
+
+                // Firestore Security Demo Card
+                CustomCard(
+                  icon: Icons.security,
+                  iconColor: Colors.teal,
+                  title: 'Firestore Security & Auth Rules',
+                  description:
+                      'Implement authentication-based security rules to protect tournament data and enforce user ownership',
+                  features: ['Auth Protection', 'Custom Rules', 'User Data Isolation'],
+                  onTap: () =>
+                      _navigateToScreen('/firestore-security', 'Firestore Security Demo'),
+                ),
                 const SizedBox(height: 32),
 
                 // Info Section
