@@ -19,6 +19,7 @@ import 'screens/state_management_demo.dart';
 import 'screens/asset_demo.dart';
 import 'screens/animation_demo.dart';
 import 'screens/tasks_screen.dart';
+import 'screens/items_screen.dart';
 import 'screens/query_demo_screen.dart';
 import 'screens/upload_demo_screen.dart';
 import 'screens/cloud_functions_demo.dart';
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
         '/asset-demo': (context) => const AssetDemoScreen(),
         '/animation-demo': (context) => const AnimationDemoScreen(),
         '/tasks': (context) => const TasksScreen(),
+        '/items': (context) => const ItemsScreen(),
         '/queries': (context) => const QueryDemoScreen(),
         '/upload': (context) => const UploadDemoScreen(),
         '/cloud-functions': (context) => const CloudFunctionsDemoScreen(),

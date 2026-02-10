@@ -89,4 +89,34 @@ class FirestoreService {
   Future<void> deleteTask(String docId) {
     return tasks.doc(docId).delete();
   }
+
+  // --- Per-user items stored under /users/{uid}/items/{itemId} ---
+  CollectionReference itemsForUser(String uid) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('items');
+  }
+
+  Future<void> createUserItem(String uid, String title, String description) async {
+    await itemsForUser(uid).add({
+      'title': title,
+      'description': description,
+      'createdAt': Timestamp.now(),
+    });
+  }
+
+  Stream<QuerySnapshot> streamUserItems(String uid) {
+    return itemsForUser(uid)
+        .orderBy('createdAt', descending: true)
+        .snapshots();
+  }
+
+  Future<void> updateUserItem(String uid, String itemId, Map<String, dynamic> data) {
+    return itemsForUser(uid).doc(itemId).set(data, SetOptions(merge: true));
+  }
+
+  Future<void> deleteUserItem(String uid, String itemId) {
+    return itemsForUser(uid).doc(itemId).delete();
+  }
 }
