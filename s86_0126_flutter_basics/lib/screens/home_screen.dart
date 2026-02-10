@@ -235,6 +235,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
+                // Items CRUD Demo Card
+                CustomCard(
+                  icon: Icons.folder_open,
+                  iconColor: Colors.teal,
+                  title: 'My Items - CRUD',
+                  description:
+                      'Create, read, update and delete your personal items stored under /users/{uid}/items',
+                  features: ['Create', 'Real-time list', 'Edit', 'Delete'],
+                  onTap: () => _navigateToScreen('/items', 'My Items (CRUD)'),
+                ),
+                const SizedBox(height: 16),
+
                 // Tasks / Firestore Demo Card
                 CustomCard(
                   icon: Icons.task,
