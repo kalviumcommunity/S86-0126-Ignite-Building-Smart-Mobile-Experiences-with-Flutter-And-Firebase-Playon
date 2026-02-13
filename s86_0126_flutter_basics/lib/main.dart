@@ -27,6 +27,7 @@ import 'screens/cloud_functions_demo.dart';
 import 'screens/push_notifications_demo.dart';
 import 'screens/firestore_security_demo.dart';
 import 'screens/map_screen.dart';
+import 'screens/tournament_dashboard.dart';
 // import 'screens/widget_tree_demo.dart';
 // import 'screens/responsive_home.dart'; // keep for later use if needed
 
@@ -98,6 +99,7 @@ class MyApp extends StatelessWidget {
         '/push-notifications': (context) => const PushNotificationsDemoScreen(),
         '/firestore-security': (context) => const FirestoreSecurityDemoScreen(),
         '/map': (context) => const MapScreen(),
+        '/tournament-dashboard': (context) => const TournamentDashboard(),
       },
     );
   }

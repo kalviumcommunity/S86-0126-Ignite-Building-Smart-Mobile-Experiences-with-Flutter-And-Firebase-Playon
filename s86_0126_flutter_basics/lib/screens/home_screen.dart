@@ -209,6 +209,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
+                // Tournament Dashboard Card
+                CustomCard(
+                  icon: Icons.tab,
+                  iconColor: Colors.deepOrange,
+                  title: 'Tournament Dashboard - Tab Navigation',
+                  description:
+                      'Explore BottomNavigationBar with PageView for smooth multi-tab navigation and state preservation',
+                  features: ['BottomNavigationBar', 'PageView', 'Tab State Management'],
+                  onTap: () =>
+                      _navigateToScreen('/tournament-dashboard', 'Tournament Dashboard'),
+                ),
+                const SizedBox(height: 16),
+
                 // State Management Demo Card
                 CustomCard(
                   icon: Icons.refresh,
