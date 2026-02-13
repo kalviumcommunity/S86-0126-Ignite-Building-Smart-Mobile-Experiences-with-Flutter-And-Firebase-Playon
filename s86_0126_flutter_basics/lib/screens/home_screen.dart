@@ -196,6 +196,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
+                // Advanced Form Demo Card
+                CustomCard(
+                  icon: Icons.security,
+                  iconColor: Colors.indigo,
+                  title: 'Advanced Form Validation',
+                  description:
+                      'Master complex form validation including password strength, cross-field validation, and real-time feedback',
+                  features: ['Password Strength', 'Cross-field Validation', 'Advanced Rules'],
+                  onTap: () =>
+                      _navigateToScreen('/advanced-form', 'Advanced Form Validation'),
+                ),
+                const SizedBox(height: 16),
+
                 // State Management Demo Card
                 CustomCard(
                   icon: Icons.refresh,

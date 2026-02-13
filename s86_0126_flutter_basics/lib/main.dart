@@ -15,6 +15,7 @@ import 'screens/stateless_stateful_demo.dart';
 import 'screens/responsive_layout.dart';
 import 'screens/scrollable_views.dart';
 import 'screens/user_input_form.dart';
+import 'screens/advanced_form_screen.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/asset_demo.dart';
 import 'screens/animation_demo.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
         '/responsive-layout': (context) => const ResponsiveLayout(),
         '/scrollable-views': (context) => const ScrollableViews(),
         '/user-input': (context) => const UserInputForm(),
+        '/advanced-form': (context) => const AdvancedFormScreen(),
         '/state-management': (context) => const StateManagementDemo(),
         '/asset-demo': (context) => const AssetDemoScreen(),
         '/animation-demo': (context) => const AnimationDemoScreen(),
